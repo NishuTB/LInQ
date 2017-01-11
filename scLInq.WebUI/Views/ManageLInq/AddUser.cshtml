@@ -1,0 +1,132 @@
+﻿
+@{
+    ViewBag.Title = "AddUser";
+    Layout = "~/Views/Shared/_ManageLInqLayout.cshtml";
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+<script>
+    $(function () {
+        $.ajax({
+            type: "GET",
+            url: "/ManageLInq/GetDepartments",
+            datatype: "Json",
+            success: function (data) {
+                debugger;
+                $.each(data, function (index, value) {
+                    $('#dropdownDepartment').append('<option value="' + value.DeptId + '">' + value.DeptName + '</option>');
+                });
+            }
+        });
+
+        $('#dropdownDepartment').change(function () {
+
+            $('#dropdownlocation').empty();
+
+            $.ajax({
+                type: "POST",
+                url: "/ManageLInq/GetLocationByDepartmentId",
+                datatype: "Json",
+                data: { ID: $('#dropdownDepartment').val() },
+                success: function (data) {
+                    $.each(data, function (index, value) {
+                        $('#dropdownlocation').append('<option value="' + value.LocationId + '">' + value.LocationName + '</option>');
+                    });
+                }
+            });
+        });
+    });
+</script>
+
+<h2>Cascading DropDownList Sample</h2>
+
+<div>
+    <div>
+        @Html.DropDownList("dropdownDepartment", new SelectList(string.Empty, "Value", "Text"), "Please select a department", new { @style = "width:250px;" })
+    </div>
+    <div style="margin-top:50px;">
+        @Html.DropDownList("dropdownlocation", new SelectList(string.Empty, "Value", "Text"), "Please select a location", new { @style = "width:250px;" })
+    </div>
+</div>
+
+
+
+
+
+
+@*<div style="background-color:blanchedalmond; border-color:black; border:solid">
+    <br />
+    <div> <b>Select your Department:</b></div>
+    <div>@Html.DropDownList("department", new SelectList(ViewBag.Department, "DeptId", "DeptName"),"----Select Department----", new { style = "width: 200px;" })</div>
+    <br />
+    <div><b>Select your JobFunction:</b></div>
+    <div></div>
+    <div> @Html.DropDownList("jobfunction", new SelectList(ViewBag.JobFunction, "JobFunctionId", "JobFunctionName"), "----Select Job Function----", new { style = "width: 200px;" }) </div>
+    <br />
+    <div><b>Select your Location:</b> </div>
+    <div> @Html.DropDownList("location", new SelectList(ViewBag.Location, "LocationId", "LocationName"), "----Select Location----", new { style = "width: 200px;" })</div>
+</div>*@
+
+
+
+
+@*<script type="text/javascript">
+  $(document).ready(function () {
+      $("#department").change(function () {
+          $("#jobfunction").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getstate")',
+
+                dataType: 'json',
+
+                data: { id: $("#department").val() },
+
+
+                success: function (states) {
+
+
+                    $.each(states, function (i, state) {
+                        $("#jobfunction").append('<option value="' + state.Value + '">' +
+                             state.Text + '</option>');
+
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed to retrieve states.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+
+</script>*@
+
+@*<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        $("#jobfunction").change(function () {
+            $("#location").empty();
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("getcity")',
+                dataType: 'json',
+                data: { id: $("#jobfunction").val() },
+                success: function (city) {
+
+                    $.each(city, function (i, city) {
+                        $("#location").append('<option value="'
+                                                   + city.Value + '">'
+                                             + city.Text + '</option>');
+                    });
+                },
+                error: function (ex) {
+                    alert('Failed.' + ex);
+                }
+            });
+            return false;
+        })
+    });
+</script>*@  

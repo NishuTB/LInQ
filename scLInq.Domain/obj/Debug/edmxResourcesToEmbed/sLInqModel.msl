@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="db_scLInqModelStoreContainer" CdmEntityContainer="db_scLInqEntities">
+    <EntitySetMapping Name="tbDepartments">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbDepartment">
+        <MappingFragment StoreEntitySet="tbDepartment">
+          <ScalarProperty Name="DeptLocation" ColumnName="DeptLocation" />
+          <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbFAQs">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbFAQ">
+        <MappingFragment StoreEntitySet="tbFAQ">
+          <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+          <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+          <ScalarProperty Name="AttachedToNode" ColumnName="AttachedToNode" />
+          <ScalarProperty Name="Answer" ColumnName="Answer" />
+          <ScalarProperty Name="Question" ColumnName="Question" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbFAQDocuments">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbFAQDocument">
+        <MappingFragment StoreEntitySet="tbFAQDocument">
+          <ScalarProperty Name="FAQDoc" ColumnName="FAQDoc" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbJobFunctions">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbJobFunction">
+        <MappingFragment StoreEntitySet="tbJobFunction">
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+          <ScalarProperty Name="JobFunctionName" ColumnName="JobFunctionName" />
+          <ScalarProperty Name="JobFunctionId" ColumnName="JobFunctionId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbLocations">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbLocation">
+        <MappingFragment StoreEntitySet="tbLocation">
+          <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+          <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+          <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tbUsers">
+      <EntityTypeMapping TypeName="db_scLInqModel.tbUser">
+        <MappingFragment StoreEntitySet="tbUser">
+          <ScalarProperty Name="AppName" ColumnName="AppName" />
+          <ScalarProperty Name="LastName" ColumnName="LastName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="UserId" ColumnName="UserId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

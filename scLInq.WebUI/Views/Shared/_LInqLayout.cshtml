@@ -1,0 +1,30 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+    <title>Learnt-LInQ</title>
+
+    <link href="~/Content/Menu/MenuStyle.css" rel="stylesheet" />
+</head>
+<body class="filters-active filters-show ">
+    <div class="wrapper ">
+        <header id="header" style="background-color:darkblue">            
+            <div class="box-right">
+                <div class="item login">
+                    <a href="/LInq/MySpace" style="color:white;background-color:green"> MySpace </a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" style="color:aqua" onclick="alert('work in progress...');"> QSpace </a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" style="color:aqua" onclick="alert('work in progress...');"> e-Learning </a>&nbsp;&nbsp;&nbsp;
+                    <a href="/ManageLInq/Index" style="color:aqua"> ManageLInq</a>&nbsp;&nbsp;&nbsp; |
+                    <a href="/FAQ/GeneralFAQ" style="color:aqua"> General FAQs </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <strong style="color:white"> Welcome  @Session["UserName"].ToString()  &nbsp;&nbsp; @DateTime.Today.ToString("dd-MMM-yyyy") </strong>
+                </div>
+                <a href="/Login/Login" class="button button-large">
+                    SignOut
+                </a>
+            </div>
+        </header>
+        @RenderBody()
+    </div>
+
+</body>
+</html>

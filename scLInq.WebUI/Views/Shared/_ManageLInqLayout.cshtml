@@ -1,0 +1,379 @@
+﻿
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+     <title>Learnt-LInQ</title>
+
+    @{ int i = 0; }
+    @if (ViewBag.Title == "ManageFAQ")
+    {
+        i = 1;
+    }
+
+    @if (i == 1)
+    {
+        
+        <link href="~/Content/jquery.jqGrid/jqGrid.css" rel="stylesheet" />
+        <link href="~/Content/Menu/MenuStyle.css" rel="stylesheet" />
+        @*<link href="~/Scripts/Custom/ui.jqgrid.css" rel="stylesheet"/>*@
+    }
+
+    @if (i == 0)
+    {
+        @*<link href="~/Content/jQueryUI/jquery-ui.min.css" rel="stylesheet" />*@
+        <link href="~/Content/Menu/MenuStyle.css" rel="stylesheet" />
+    }
+
+
+    @*<link rel="stylesheet" href="https://assets.awwwards.com/css/8f2abde.css?v22" />*@
+</head>
+<body class="filters-active filters-show ">
+    
+    <div class="wrapper ">
+        <nav class="nav-main" id="nav-main">
+            <div class="top">
+                <div class="header">
+                   
+                    <div class="pull-right">
+                        <div class="bt-close js-nav-main">CLOSE</div>
+                    </div>
+                </div>
+                <ul class="menu active" data-menu-name="BACK" id="menu-main">
+                    <li class="dropdown">
+                        <span class="item">Manage Users</span>
+                        <ul>
+                            <li><a href="/ManageLInq/AddUser" class="item">Add User</a></li>
+                            <li><a href="#" class="item">Modify User</a></li>
+                            <li><a href="#" class="item">Delete User</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">User Access</a></li>
+                            <li><a href="#" class="item">User Access</a></li>
+                            <li><a href="#" class="item">Enable Users</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">Leave</a></li>
+                            <li><a href="#" class="item">Manage Leave</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">Break Tracker</a></li>
+                            <li><a href="#" class="item">Upload Break Details</a></li>
+                            <li><a href="#" class="item">View Break Tracker</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <span class="item">Manage Roles</span>
+                        <ul>
+                            <li><a href="/awards-of-the-day/" class="item">Add Role</a></li>
+                            <li><a href="/awards-of-the-month/" class="item">Modify Role</a></li>
+                            <li><a href="/awards-of-the-year/" class="item">Delete Role</a></li>
+                            <li><a href="#" class="item">------------------</a></li>
+                            <li><a href="/honorable-mentions/" class="item">Modify Primary Role</a></li>
+                            <li><a href="/winner-list/" class="item">Assign Secondary Role</a></li>
+                            <li><a href="/winner-list/" class="item">Remove Secondary Role</a></li>
+                            <li><a href="#" class="item">------------------</a></li>
+                            <li><a href="#" class="item">Send Mail To Role</a></li>
+                            <li><a href="#" class="item">Assign Roles To Processes</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <span class="item">Manage Access</span>
+                        <ul>
+                            <li><a href="#" class="item" style="background-color:aqua">Role Level</a></li>
+                            <li><a href="#" class="item">Grant Template Access</a></li>
+                            <li><a href="#" class="item">Revoke Template Access</a></li>
+                            <li><a href="#" class="item">---------------------</a></li>
+                            <li><a href="#" class="item">Grant Node Access</a></li>
+                            <li><a href="#" class="item">Revoke Node Access</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">User Level</a></li>
+                            <li><a href="#" class="item">Grant Template Ownership</a></li>
+                            <li><a href="#" class="item">Remove Template Ownership</a></li>
+                            <li><a href="#" class="item">---------------------</a></li>
+                            <li><a href="#" class="item">Grant Template Access</a></li>
+                            <li><a href="#" class="item">Revoke Template Access</a></li>
+                            <li><a href="#" class="item">Grant Node Ownership</a></li>
+                            <li><a href="#" class="item">---------------------</a></li>
+                            <li><a href="#" class="item">Remove Node Ownership</a></li>
+
+                            <li><a href="#" class="item">Assign Roles To Floor Manager</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">Break Tracker</a></li>
+                            <li><a href="#" class="item">Upload Break Details</a></li>
+                            <li><a href="#" class="item">View Break Tracker</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <span class="item">Manage Parameter Master</span>
+                        <ul>
+                            <li><a href="#" class="item" >Add To Parameter Master</a></li>
+                            <li><a href="#" class="item">Modify Parameter Master</a></li>
+                            <li><a href="#" class="item">Delete from Parameter Master</a></li>
+                            
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <span class="item">Manage Template</span>
+                        <ul>
+                            <li><a href="#" class="item" >Add Template</a></li>
+                            <li><a href="#" class="item" >Modify Template</a></li>
+                            <li><a href="#" class="item" >Delete Template</a></li>
+                            <li><a href="#" class="item" >Add Parameter To Template</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <span class="item">Manage Nodes</span>
+                        <ul>
+                            <li><a href="#" class="item" >Add Nodes</a></li>
+                            <li><a href="#" class="item">Modify Nodes</a></li>
+                            <li><a href="#" class="item">Delete Nodes</a></li>
+                            <li><a href="#" class="item">Approve Node Publishing</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">Manage Node Parameter</a></li>
+                            <li><a href="#" class="item">Reorders Parameters</a></li>
+                            <li><a href="#" class="item">Mark Important Parameters</a></li>
+                            <li><a href="#" class="item">---------------------</a></li>
+                            <li><a href="#" class="item">Show Parameter To Role</a></li>
+                            <li><a href="#" class="item">Push Parameter To Role / User</a></li>
+                            <li><a href="#" class="item" style="background-color:aqua">Manage Node FAQ</a></li>
+                            <li><a href="#" class="item">Reorders FAQ</a></li>
+                            <li><a href="#" class="item">Reorder FAQ Document</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Miscellaneous</a></li>
+                            <li><a href="#" class="item">Mark Legands</a></li>
+                            <li><a href="#" class="item">Mark Quick Reference Nodes</a></li>
+                            <li><a href="#" class="item">---------------------</a></li>
+                            <li><a href="#" class="item">Set Node Relations</a></li>
+                            <li><a href="#" class="item">Compare Node Versions</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Node OverView</a></li>
+                            <li><a href="#" class="item">Site Map</a></li>
+                            <li><a href="#" class="item">Reorder Tree View</a></li>
+                            <li><a href="#" class="item">Incomplete evaluation Roles</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <span class="item">Manage FAQ</span>
+                        <ul>
+                            <li><a href="/FAQ/ManageFAQ" class="item">Manage FAQ</a></li>
+                            <li><a href="/FAQ/AddFAQ" class="item">Add FAQ</a></li>
+                            <li><a href="#" class="item">Modify FAQ</a></li>
+                            <li><a href="#" class="item">Delete FAQ</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">FAQ Document</a></li>
+                            <li><a href="#" class="item">Add FAQ Document</a></li>
+                            <li><a href="#" class="item">Modify FAQ Document</a></li>
+                            <li><a href="#" class="item">Delete FAQ Document</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <span class="item">Workflow</span>
+                        <ul>
+                            <li><a href="#" class="item">Add Workflow</a></li>
+                            <li><a href="#" class="item">Modify Workflow</a></li>
+                            <li><a href="#" class="item">Delete Workflow</a></li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <span class="item">Manage News Flash</span>
+                        <ul>
+                            <li><a href="#" class="item">Add News Flash</a></li>
+                            <li><a href="#" class="item">Modify News Flash</a></li>
+                            <li><a href="#" class="item">Delete News Flash</a></li>
+                            <li><a href="#" class="item">Change News Flash Order</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <span class="item">MySpace Manager</span>
+                        <ul>
+                            <li><a href="#" class="item" style="background-color:aqua">What Happening</a></li>
+                            <li><a href="#" class="item">Add What's Happening Item</a></li>
+                            <li><a href="#" class="item">Modify What's Happening Item</a></li>
+                            <li><a href="#" class="item">Delete What's Happening Item</a></li>
+                            <li><a href="#" class="item">Change What's Happening Order</a></li>
+                            <li><a href="#" class="item">View What's Happening List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">General Ticker</a></li>
+                            <li><a href="#" class="item">Add General Ticker Item</a></li>
+                            <li><a href="#" class="item">Modify General Ticker Item</a></li>
+                            <li><a href="#" class="item">Delete General Ticker Item</a></li>
+                            <li><a href="#" class="item">Change General Ticker Order</a></li>
+                            <li><a href="#" class="item">View General Ticker List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Today</a></li>
+                            <li><a href="#" class="item">Add Today Item</a></li>
+                            <li><a href="#" class="item">Modify Today Item</a></li>
+                            <li><a href="#" class="item">Delete Today Item</a></li>
+                            <li><a href="#" class="item">Change Today Order</a></li>
+                            <li><a href="#" class="item">View Today List</a></li>
+
+
+                            <li><a href="#" class="item" style="background-color:aqua">Rotator Image</a></li>
+                            <li><a href="#" class="item">Add Image For Rotator</a></li>
+                            <li><a href="#" class="item">Modify Rotator Image Item</a></li>
+                            <li><a href="#" class="item">Delete Rotator Image Item</a></li>
+                            <li><a href="#" class="item">Change Rotator Image Order</a></li>
+                            <li><a href="#" class="item">View Rotator Image List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Special Content</a></li>
+                            <li><a href="#" class="item">Add Special Content Item</a></li>
+                            <li><a href="#" class="item">Modify Special Content Item</a></li>
+                            <li><a href="#" class="item">Delete Special Content Item</a></li>
+                            <li><a href="#" class="item">Change Special Content Order</a></li>
+                            <li><a href="#" class="item">View Special Content List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Miscellaneous</a></li>
+                            <li><a href="#" class="item">Add Media File</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Manage MySpace Zone</a></li>
+                            <li><a href="#" class="item">Node Space Manager</a></li>
+                            <li><a href="#" class="item">Reorder MySpace Nodes</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <span class="item">Manage News Flash</span>
+                        <ul>
+                            <li><a href="#" class="item" style="background-color:aqua">Business Unit</a></li>
+                            <li><a href="#" class="item">Add Business Unit</a></li>
+                            <li><a href="#" class="item">Modify Business Unit</a></li>
+                            <li><a href="#" class="item">Delete Business Unit</a></li>
+                            <li><a href="#" class="item">View Business Unit List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Business Center</a></li>
+                            <li><a href="#" class="item">Add Business Center</a></li>
+                            <li><a href="#" class="item">Modify Business Center</a></li>
+                            <li><a href="#" class="item">Delete Business Center</a></li>
+                            <li><a href="#" class="item">View Business Center List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Job Function</a></li>
+                            <li><a href="#" class="item">Add Job Function</a></li>
+                            <li><a href="#" class="item">Modify Job Function</a></li>
+                            <li><a href="#" class="item">Delete Job Function</a></li>
+                            <li><a href="#" class="item">View Job Function List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Skill</a></li>
+                            <li><a href="#" class="item">Add Skill</a></li>
+                            <li><a href="#" class="item">Modify Skill</a></li>
+                            <li><a href="#" class="item">Delete Skill</a></li>
+                            <li><a href="#" class="item">View Skill List</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Holiday</a></li>
+                            <li><a href="#" class="item">Add Holiday</a></li>
+                            <li><a href="#" class="item">Modify Holiday</a></li>
+                            <li><a href="#" class="item">Delete Holiday</a></li>
+                            <li><a href="#" class="item">View Holiday</a></li>
+
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <span class="item">Reports</span>
+                        <ul>
+                            <li><a href="#" class="item" style="background-color:aqua">Nodes / FAQ / Feedback</a></li>
+                            <li><a href="#" class="item">Addition History / Count</a></li>
+                            <li><a href="#" class="item">Modification History / Count</a></li>
+                            <li><a href="#" class="item">Deletion History / Count</a></li>
+                            <li><a href="#" class="item">Access Count</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Miscellaneous</a></li>
+                            <li><a href="#" class="item">Node Rating Report</a></li>
+                            <li><a href="#" class="item">User Login History</a></li>
+                            <li><a href="#" class="item">Overdue CIB's Report</a></li>
+                            <li><a href="#" class="item">CIB Acknowledgement Report</a></li>
+                        </ul>
+                    </li>
+
+
+                    <li class="dropdown">
+                        <span class="item">Form Builder</span>
+                        <ul>
+                            <li><a href="#" class="item" style="background-color:aqua">Form Creation</a></li>
+                            <li><a href="#" class="item">Add Form</a></li>
+                            <li><a href="#" class="item">Modify Form</a></li>
+                            <li><a href="#" class="item">Delete Form</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Form Design</a></li>
+                            <li><a href="#" class="item">Design Form</a></li>
+                            <li><a href="#" class="item">Form View String</a></li>
+                            <li><a href="#" class="item">Add Master</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Form Rights</a></li>
+                            <li><a href="#" class="item">Assign Stakeholder</a></li>
+                            <li><a href="#" class="item">Assign Form User</a></li>
+                            <li><a href="#" class="item">Assign Response User</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">Form Display</a></li>
+                            <li><a href="#" class="item">Classification Reorder</a></li>
+                            <li><a href="#" class="item">Forms Reorder</a></li>
+                            <li><a href="#" class="item">Links Reorder</a></li>
+                            <li><a href="#" class="item">Add Notes</a></li>
+
+                            <li><a href="#" class="item" style="background-color:aqua">DE Using Form</a></li>
+                            <li><a href="#" class="item">Update Feedback / Status</a></li>
+                            <li><a href="#" class="item">MIS</a></li>
+                            <li><a href="#" class="item">Acknowledgment</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+               
+            </div>
+            <div class="box-bottom">
+                <div class="box-version">
+                    <span>Activate black option</span>
+                    <div class="input-check-toggle check-small ">
+                        <input id="version-color" type="checkbox" class="js-dark">
+                        <label for="version-color">
+                            <div class="ball"></div>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <header id="header" style="background-color:darkblue">
+            <div class="box-left">
+                <div class="item bt-menu js-nav-main">
+                    @*<svg class="ico-svg ico-13 ico-rendering" viewbox="0 0 15 13" xmlns="http://www.w3.org/2000/svg">
+                        <use xlink:href="/bundles/tvweb/images/sprite-icons.svg#menu-main" xmlns:xlink="http://www.w3.org/1999/xlink"></use>
+                    </svg>*@
+
+                    <span style="color:white">MENU</span>
+                </div>
+            </div>
+            <div class="box-right">
+                
+                <div class="item login">
+                    <a href="/LInq/MySpace" style="color:aqua"> MySpace </a>&nbsp;&nbsp;&nbsp;
+
+                    <a href="/LInq/MySpace" style="color:aqua"> QSpace </a>&nbsp;&nbsp;&nbsp;
+                    <a href="/LInq/MySpace" style="color:aqua"> e-Learning </a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" style="color:white;background-color:green"> ManageLInq</a>&nbsp;&nbsp;&nbsp; |
+                    <a href="/FAQ/GeneralFAQ" style="color:aqua"> General FAQs </a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<strong style="color:white"> Welcome  @Session["UserName"].ToString()  &nbsp;&nbsp; @DateTime.Today.ToString("dd-MMM-yyyy") </strong>
+                </div>
+
+                <a href="/Login/Login" class="button button-large">
+                    SignOut
+                </a>
+            </div>
+         
+        </header>
+   
+        @RenderBody()
+    </div>
+   
+
+   
+    @if (ViewBag.Title == "ManageFAQ")
+    {
+        @Scripts.Render("~/jsManageFAQjqGridBundle")
+    }
+
+    <script src="~/Scripts/Menu/MenuScript.js"></script>
+
+</body>
+</html>

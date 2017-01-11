@@ -1,0 +1,63 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_ManageLInqLayout.cshtml";
+}
+
+<h2>Index</h2>
+
+@*<video id='videoobj' width='400' height='400' type='video/mp4' src='http://www.youtube.com/embed/pIv6yR9Q1IA' />*@
+
+<iframe id="videoPlayer" width="560"
+        height="315"
+        src="~/ManageLInq/GetVideo"
+        frameborder="0"
+        allowfullscreen></iframe>
+@*<video controls="controls">
+    <source src="~/Content/music.mp4" type="video/mp4" />
+</video>*@
+@*<video controls="controls" id="videoPlayer">
+    <source src="~/ManageLInq/GetVideo" type="video/mp4">
+</video>*@
+
+<button onclick="makeVideoFullScreen()">
+    Go Full Screen
+</button><br /><br />
+
+
+<script>
+    document.getElementById('videoPlayer').requestFullScreen();
+
+    function isFullScreenAvailable() {
+        return (
+           document.fullscreenEnabled ||
+           document.webkitFullscreenEnabled ||
+           document.mozFullScreenEnabled ||
+           document.msFullscreenEnabled
+        );
+    }
+
+    function makeVideoFullScreen() {
+        if (isFullScreenAvailable) {
+            var videoElement = document.getElementById('videoPlayer');
+            requestFullScreen(videoElement);
+            return;
+        }
+        alert("Sorry full screen is not available in this browser");
+    }
+
+    function requestFullScreen(elementToRequest) {
+        if (elementToRequest.requestFullScreen) {
+            elementToRequest.requestFullScreen();
+        }
+        else if (elementToRequest.webkitRequestFullscreen) {
+            elementToRequest.webkitRequestFullscreen();
+        }
+        else if (elementToRequest.mozRequestFullScreen) {
+            elementToRequest.mozRequestFullScreen();
+        }
+        else if (elementToRequest.msRequestFullscreen) {
+            elementToRequest.msRequestFullscreen();
+        }
+    }
+</script>

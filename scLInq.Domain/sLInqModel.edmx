@@ -1,0 +1,296 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="db_scLInqModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="tbDepartment">
+          <Key>
+            <PropertyRef Name="DeptId" />
+          </Key>
+          <Property Name="DeptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DeptName" Type="varchar" MaxLength="100" />
+          <Property Name="DeptLocation" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="tbFAQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="nvarchar" MaxLength="255" />
+          <Property Name="Answer" Type="nvarchar" MaxLength="255" />
+          <Property Name="AttachedToNode" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
+          <Property Name="ModifyOn" Type="datetime" />
+        </EntityType>
+        <EntityType Name="tbFAQDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FAQDoc" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="tbJobFunction">
+          <Key>
+            <PropertyRef Name="JobFunctionId" />
+          </Key>
+          <Property Name="JobFunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="JobFunctionName" Type="varchar" MaxLength="100" />
+          <Property Name="DeptId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="LocationName" Type="varchar" MaxLength="100" />
+          <Property Name="DeptId" Type="int" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="AppName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_tbJobFunction_tbDepartment">
+          <End Role="tbDepartment" Type="Self.tbDepartment" Multiplicity="0..1" />
+          <End Role="tbJobFunction" Type="Self.tbJobFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDepartment">
+              <PropertyRef Name="DeptId" />
+            </Principal>
+            <Dependent Role="tbJobFunction">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbLocation_tbDepartment">
+          <End Role="tbDepartment" Type="Self.tbDepartment" Multiplicity="0..1" />
+          <End Role="tbLocation" Type="Self.tbLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDepartment">
+              <PropertyRef Name="DeptId" />
+            </Principal>
+            <Dependent Role="tbLocation">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="db_scLInqModelStoreContainer">
+          <EntitySet Name="tbDepartment" EntityType="Self.tbDepartment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbFAQ" EntityType="Self.tbFAQ" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbFAQDocument" EntityType="Self.tbFAQDocument" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbJobFunction" EntityType="Self.tbJobFunction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbLocation" EntityType="Self.tbLocation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_tbJobFunction_tbDepartment" Association="Self.FK_tbJobFunction_tbDepartment">
+            <End Role="tbDepartment" EntitySet="tbDepartment" />
+            <End Role="tbJobFunction" EntitySet="tbJobFunction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbLocation_tbDepartment" Association="Self.FK_tbLocation_tbDepartment">
+            <End Role="tbDepartment" EntitySet="tbDepartment" />
+            <End Role="tbLocation" EntitySet="tbLocation" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="db_scLInqModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="db_scLInqEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="tbDepartments" EntityType="db_scLInqModel.tbDepartment" />
+          <EntitySet Name="tbFAQs" EntityType="db_scLInqModel.tbFAQ" />
+          <EntitySet Name="tbFAQDocuments" EntityType="db_scLInqModel.tbFAQDocument" />
+          <EntitySet Name="tbJobFunctions" EntityType="db_scLInqModel.tbJobFunction" />
+          <EntitySet Name="tbLocations" EntityType="db_scLInqModel.tbLocation" />
+          <EntitySet Name="tbUsers" EntityType="db_scLInqModel.tbUser" />
+          <AssociationSet Name="FK_tbJobFunction_tbDepartment" Association="db_scLInqModel.FK_tbJobFunction_tbDepartment">
+            <End Role="tbDepartment" EntitySet="tbDepartments" />
+            <End Role="tbJobFunction" EntitySet="tbJobFunctions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tbLocation_tbDepartment" Association="db_scLInqModel.FK_tbLocation_tbDepartment">
+            <End Role="tbDepartment" EntitySet="tbDepartments" />
+            <End Role="tbLocation" EntitySet="tbLocations" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="tbDepartment">
+          <Key>
+            <PropertyRef Name="DeptId" />
+          </Key>
+          <Property Name="DeptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DeptName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DeptLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="tbJobFunctions" Relationship="db_scLInqModel.FK_tbJobFunction_tbDepartment" FromRole="tbDepartment" ToRole="tbJobFunction" />
+          <NavigationProperty Name="tbLocations" Relationship="db_scLInqModel.FK_tbLocation_tbDepartment" FromRole="tbDepartment" ToRole="tbLocation" />
+        </EntityType>
+        <EntityType Name="tbFAQ">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="AttachedToNode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="tbFAQDocument">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FAQDoc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="tbJobFunction">
+          <Key>
+            <PropertyRef Name="JobFunctionId" />
+          </Key>
+          <Property Name="JobFunctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="JobFunctionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DeptId" Type="Int32" />
+          <NavigationProperty Name="tbDepartment" Relationship="db_scLInqModel.FK_tbJobFunction_tbDepartment" FromRole="tbJobFunction" ToRole="tbDepartment" />
+        </EntityType>
+        <EntityType Name="tbLocation">
+          <Key>
+            <PropertyRef Name="LocationId" />
+          </Key>
+          <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DeptId" Type="Int32" />
+          <NavigationProperty Name="tbDepartment" Relationship="db_scLInqModel.FK_tbLocation_tbDepartment" FromRole="tbLocation" ToRole="tbDepartment" />
+        </EntityType>
+        <EntityType Name="tbUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <Association Name="FK_tbJobFunction_tbDepartment">
+          <End Type="db_scLInqModel.tbDepartment" Role="tbDepartment" Multiplicity="0..1" />
+          <End Type="db_scLInqModel.tbJobFunction" Role="tbJobFunction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDepartment">
+              <PropertyRef Name="DeptId" />
+            </Principal>
+            <Dependent Role="tbJobFunction">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tbLocation_tbDepartment">
+          <End Type="db_scLInqModel.tbDepartment" Role="tbDepartment" Multiplicity="0..1" />
+          <End Type="db_scLInqModel.tbLocation" Role="tbLocation" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tbDepartment">
+              <PropertyRef Name="DeptId" />
+            </Principal>
+            <Dependent Role="tbLocation">
+              <PropertyRef Name="DeptId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="db_scLInqModelStoreContainer" CdmEntityContainer="db_scLInqEntities">
+          <EntitySetMapping Name="tbDepartments">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbDepartment">
+              <MappingFragment StoreEntitySet="tbDepartment">
+                <ScalarProperty Name="DeptLocation" ColumnName="DeptLocation" />
+                <ScalarProperty Name="DeptName" ColumnName="DeptName" />
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFAQs">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbFAQ">
+              <MappingFragment StoreEntitySet="tbFAQ">
+                <ScalarProperty Name="ModifyOn" ColumnName="ModifyOn" />
+                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="AttachedToNode" ColumnName="AttachedToNode" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbFAQDocuments">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbFAQDocument">
+              <MappingFragment StoreEntitySet="tbFAQDocument">
+                <ScalarProperty Name="FAQDoc" ColumnName="FAQDoc" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbJobFunctions">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbJobFunction">
+              <MappingFragment StoreEntitySet="tbJobFunction">
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="JobFunctionName" ColumnName="JobFunctionName" />
+                <ScalarProperty Name="JobFunctionId" ColumnName="JobFunctionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbLocations">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbLocation">
+              <MappingFragment StoreEntitySet="tbLocation">
+                <ScalarProperty Name="DeptId" ColumnName="DeptId" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="LocationId" ColumnName="LocationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tbUsers">
+            <EntityTypeMapping TypeName="db_scLInqModel.tbUser">
+              <MappingFragment StoreEntitySet="tbUser">
+                <ScalarProperty Name="AppName" ColumnName="AppName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

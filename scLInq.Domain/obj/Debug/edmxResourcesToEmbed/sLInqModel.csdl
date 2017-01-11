@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_scLInqModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="db_scLInqEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tbDepartments" EntityType="db_scLInqModel.tbDepartment" />
+    <EntitySet Name="tbFAQs" EntityType="db_scLInqModel.tbFAQ" />
+    <EntitySet Name="tbFAQDocuments" EntityType="db_scLInqModel.tbFAQDocument" />
+    <EntitySet Name="tbJobFunctions" EntityType="db_scLInqModel.tbJobFunction" />
+    <EntitySet Name="tbLocations" EntityType="db_scLInqModel.tbLocation" />
+    <EntitySet Name="tbUsers" EntityType="db_scLInqModel.tbUser" />
+    <AssociationSet Name="FK_tbJobFunction_tbDepartment" Association="db_scLInqModel.FK_tbJobFunction_tbDepartment">
+      <End Role="tbDepartment" EntitySet="tbDepartments" />
+      <End Role="tbJobFunction" EntitySet="tbJobFunctions" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbLocation_tbDepartment" Association="db_scLInqModel.FK_tbLocation_tbDepartment">
+      <End Role="tbDepartment" EntitySet="tbDepartments" />
+      <End Role="tbLocation" EntitySet="tbLocations" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="tbDepartment">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeptName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DeptLocation" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="tbJobFunctions" Relationship="db_scLInqModel.FK_tbJobFunction_tbDepartment" FromRole="tbDepartment" ToRole="tbJobFunction" />
+    <NavigationProperty Name="tbLocations" Relationship="db_scLInqModel.FK_tbLocation_tbDepartment" FromRole="tbDepartment" ToRole="tbLocation" />
+  </EntityType>
+  <EntityType Name="tbFAQ">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Question" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="Answer" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="AttachedToNode" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+    <Property Name="ModifiedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="ModifyOn" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tbFAQDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FAQDoc" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tbJobFunction">
+    <Key>
+      <PropertyRef Name="JobFunctionId" />
+    </Key>
+    <Property Name="JobFunctionId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobFunctionName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DeptId" Type="Int32" />
+    <NavigationProperty Name="tbDepartment" Relationship="db_scLInqModel.FK_tbJobFunction_tbDepartment" FromRole="tbJobFunction" ToRole="tbDepartment" />
+  </EntityType>
+  <EntityType Name="tbLocation">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LocationName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="DeptId" Type="Int32" />
+    <NavigationProperty Name="tbDepartment" Relationship="db_scLInqModel.FK_tbLocation_tbDepartment" FromRole="tbLocation" ToRole="tbDepartment" />
+  </EntityType>
+  <EntityType Name="tbUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="AppName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <Association Name="FK_tbJobFunction_tbDepartment">
+    <End Type="db_scLInqModel.tbDepartment" Role="tbDepartment" Multiplicity="0..1" />
+    <End Type="db_scLInqModel.tbJobFunction" Role="tbJobFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDepartment">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="tbJobFunction">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbLocation_tbDepartment">
+    <End Type="db_scLInqModel.tbDepartment" Role="tbDepartment" Multiplicity="0..1" />
+    <End Type="db_scLInqModel.tbLocation" Role="tbLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDepartment">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="tbLocation">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

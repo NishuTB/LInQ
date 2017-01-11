@@ -1,0 +1,53 @@
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+
+    @{ int i = 0; }
+    @if (ViewBag.Title == "GeneralFAQ")
+    {
+        i = 1;
+    }
+
+    @if (i == 1)
+    {
+        <link href="~/Content/jquery.jqGrid/jqGrid.css" rel="stylesheet" />
+    }
+
+    @if (i == 0)
+    {
+        <link href="~/Content/jQueryUI/jquery-ui.min.css" rel="stylesheet" />
+    }
+
+
+
+</head>
+<body>
+    <div class="navbar navbar-inverse navbar-fixed-top" style="background-color:darkblue">
+        @*<h4 class="nav navbar-nav navbar-right" style="color:white;vertical-align:central;align-content:center"> @Session["UserName"].ToString() &nbsp;&nbsp; @DateTime.Today.ToString("dd-MMM-yyyy") </h4>*@ 
+        <h4 class="nav navbar-nav navbar-right"  style="color:white;vertical-align:central;align-content:center;text-emphasis-position:below;"> @Session["UserName"].ToString() &nbsp;&nbsp; @DateTime.Today.ToString("dd-MMM-yyyy") </h4> 
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    </div>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    @if (ViewBag.Title == "GeneralFAQ")
+    {
+        @Scripts.Render("~/jsFAQjqGridBundle")
+    }
+
+</body>
+</html>
+

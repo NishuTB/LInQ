@@ -1,0 +1,96 @@
+﻿@model scLInq.WebUI.Models.FAQM
+
+@{
+    ViewBag.Title = "AddFAQ";
+    Layout = "~/Views/Shared/_ManageLInqLayout.cshtml";
+}
+
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+
+    <table width="85" border="0" cellspacing="2" cellpadding="2" style="backgbackground-color:darkblue;">
+        <tr>
+            <td align="center" class="tablehead" colspan="2">FAQ ADD</td>
+        </tr>
+
+        <tr>
+            <td class="tablebody" colspan="2"><font size="1">All fields marked with * are mandatory. </font></td>
+        </tr>
+        <tr>
+            <td align="right" class="tablebody" valign="top">
+                @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td class="tablebody">
+                @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td align="right" class="tablebody" valign="top">
+            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td class="tablebody" id="faqeditor">
+                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="right">
+                <b><a href="#" onclick="alert('work in progress');">Relate FAQ to node(s):</a></b>
+                <input type="hidden" name="hidNodeIds"/>
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="center">
+                <br/>
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </td>
+        </tr>
+
+        <tr>
+            <td colspan="2" align="left">
+                <b>NOTE :</b> <br />
+                1) To make FAQ general don't relate it to any node.<br />
+                2) The 'Add URL' feature is not available for the above function.
+            </td>
+        </tr>
+
+    </table>
+
+ 
+
+
+    @*<div class="form-horizontal">
+        <h4>FAQM</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Question, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Question, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Question, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Answer, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Answer, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Answer, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Submit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>*@
+}
+

@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="db_scLInqModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tbDepartment">
+    <Key>
+      <PropertyRef Name="DeptId" />
+    </Key>
+    <Property Name="DeptId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeptName" Type="varchar" MaxLength="100" />
+    <Property Name="DeptLocation" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="tbFAQ">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Question" Type="nvarchar" MaxLength="255" />
+    <Property Name="Answer" Type="nvarchar" MaxLength="255" />
+    <Property Name="AttachedToNode" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedBy" Type="varchar" MaxLength="100" />
+    <Property Name="CreatedOn" Type="datetime" />
+    <Property Name="ModifiedBy" Type="varchar" MaxLength="100" />
+    <Property Name="ModifyOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tbFAQDocument">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FAQDoc" Type="nvarchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="tbJobFunction">
+    <Key>
+      <PropertyRef Name="JobFunctionId" />
+    </Key>
+    <Property Name="JobFunctionId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="JobFunctionName" Type="varchar" MaxLength="100" />
+    <Property Name="DeptId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbLocation">
+    <Key>
+      <PropertyRef Name="LocationId" />
+    </Key>
+    <Property Name="LocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LocationName" Type="varchar" MaxLength="100" />
+    <Property Name="DeptId" Type="int" />
+  </EntityType>
+  <EntityType Name="tbUser">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="varchar" MaxLength="50" />
+    <Property Name="Password" Type="varchar" MaxLength="50" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" />
+    <Property Name="AppName" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <Association Name="FK_tbJobFunction_tbDepartment">
+    <End Role="tbDepartment" Type="Self.tbDepartment" Multiplicity="0..1" />
+    <End Role="tbJobFunction" Type="Self.tbJobFunction" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDepartment">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="tbJobFunction">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tbLocation_tbDepartment">
+    <End Role="tbDepartment" Type="Self.tbDepartment" Multiplicity="0..1" />
+    <End Role="tbLocation" Type="Self.tbLocation" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tbDepartment">
+        <PropertyRef Name="DeptId" />
+      </Principal>
+      <Dependent Role="tbLocation">
+        <PropertyRef Name="DeptId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="db_scLInqModelStoreContainer">
+    <EntitySet Name="tbDepartment" EntityType="Self.tbDepartment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbFAQ" EntityType="Self.tbFAQ" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbFAQDocument" EntityType="Self.tbFAQDocument" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbJobFunction" EntityType="Self.tbJobFunction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbLocation" EntityType="Self.tbLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tbUser" EntityType="Self.tbUser" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_tbJobFunction_tbDepartment" Association="Self.FK_tbJobFunction_tbDepartment">
+      <End Role="tbDepartment" EntitySet="tbDepartment" />
+      <End Role="tbJobFunction" EntitySet="tbJobFunction" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tbLocation_tbDepartment" Association="Self.FK_tbLocation_tbDepartment">
+      <End Role="tbDepartment" EntitySet="tbDepartment" />
+      <End Role="tbLocation" EntitySet="tbLocation" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
